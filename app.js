@@ -9,7 +9,6 @@ import AuthenticationPrivateMiddleware from './middlewares/AuthenticationPrivate
 import ActionLogMiddleware from './middlewares/ActionLog';
 import { DefaultJobs } from './jobs/DefaultJobs';
 import { DefaultEvents } from './events/DefaultEvents';
-import { Strings } from './utils/Strings';
 import { Model } from "objection";
 
 const koaServer = new koa();
@@ -30,7 +29,6 @@ console.log('Server running in http://localhost:' + (process.env.PORT || 8111))
 koaServer.use(body())
 koaServer.use(async (ctx, next) => {
 	const lang = ctx.request.header['language'] || ""
-	ctx.strings = Strings[lang.split("_")[0]] || Strings['en']
 	ctx.started_at = moment()
 
 	ctx.logs = {

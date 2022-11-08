@@ -1,6 +1,7 @@
 
 module.exports = async (ctx, next) => {
         try {
+                console.log("entrou aqui")
                 if(ctx.userInfo) {
                         await next()
                 } else {
