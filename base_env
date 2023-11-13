@@ -1,0 +1,2 @@
+PORT=8181
+DATABASE=postgres://database_user:database_password@database_host:5432/database_name
