@@ -4,8 +4,6 @@ import Router from 'koa-router';
 import body from 'koa-body';
 import http from 'http';
 import Knex from 'knex';
-import AuthenticationMiddleware from './middlewares/Authentication';
-import AuthenticationPrivateMiddleware from './middlewares/AuthenticationPrivate';
 import ActionLogMiddleware from './middlewares/ActionLog';
 import { DefaultJobs } from './jobs/DefaultJobs';
 import { DefaultEvents } from './events/DefaultEvents';
@@ -60,28 +58,13 @@ io.on('connection', (socket) => {
 DefaultJobs({io})
 
 koaServer.use(ActionLogMiddleware)
-koaServer.use(AuthenticationMiddleware)
 
 const checkRouter = new Router({ prefix: '/check' })
 import { Check } from './lib/general/Check'
 Check(checkRouter)
 koaServer.use(checkRouter.routes())
 
-const authRouter = new Router({ prefix: '/auth' })
-import { Auth } from './lib/general/Auth'
-Auth(authRouter)
-koaServer.use(authRouter.routes())
-
-const webhooksRouter = new Router({ prefix: '/hooks' })
-import { Webhooks } from './lib/general/Webhooks'
-Webhooks(webhooksRouter)
-koaServer.use(webhooksRouter.routes())
-
-// private routes
-koaServer.use(AuthenticationPrivateMiddleware)
-
-const usersRouter = new Router({ prefix: '/users' })
-import { Users } from './lib/general/Users'
-Users(usersRouter)
-koaServer.use(usersRouter.routes())
-
+const presentesRouter = new Router({ prefix: '/presentes' })
+import { Presentes } from './lib/general/Presentes'
+Presentes(presentesRouter)
+koaServer.use(presentesRouter.routes())

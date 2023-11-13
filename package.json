@@ -1,5 +1,5 @@
 {
-  "name": "coalah-base-api",
+  "name": "casamento-api",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,6 @@
   "keywords": [
     "coalah"
   ],
-  "author": "Suporte Coalah <suporte@coalah.com.br>",
   "license": "ISC",
   "dependencies": {
     "await-busboy": "^1.0.2",
