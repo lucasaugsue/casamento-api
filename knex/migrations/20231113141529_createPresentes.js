@@ -7,6 +7,9 @@ exports.up = function (knex) {
             t.string('nome').notNullable()
             t.string('url').nullable()
             t.string('preco').notNullable()
+            t.string('descricao').notNullable()
+            t.boolean('favorito').notNullable()
+            t.string('mais_informacoes', 1000).nullable()
 
             t.datetime('created_at').notNullable().defaultTo(knex.raw('NOW()'))
             t.datetime('updated_at').notNullable().defaultTo(knex.raw('NOW()'))

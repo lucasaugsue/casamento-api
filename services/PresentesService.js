@@ -15,6 +15,18 @@ class PresentesService{
         })
     }
 
+    static getAllById(id){
+        return new Promise(async (resolve, reject) => {
+            try{
+                const presente = await Presentes.query().findById(id)
+                
+                resolve(presente)
+            }catch(err){
+                reject(err)
+            }
+        })
+    }
+
     static create({params}){
         return new Promise(async (resolve, reject) => {
             try{
