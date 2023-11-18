@@ -5,7 +5,7 @@ import body from 'koa-body';
 import http from 'http';
 import Knex from 'knex';
 import ActionLogMiddleware from './middlewares/ActionLog';
-import { DefaultJobs } from './jobs/DefaultJobs';
+// import { DefaultJobs } from './jobs/DefaultJobs';
 import { DefaultEvents } from './events/DefaultEvents';
 import { Model } from "objection";
 
@@ -16,7 +16,7 @@ require('dotenv').config()
 const server = http.createServer(koaServer.callback())
 server.setTimeout(0);
 
-const io = require('socket.io')(server, { serveClient: false })
+// const io = require('socket.io')(server, { serveClient: false })
 
 const knex = Knex(require('./knexfile'))
 Model.knex(knex)
@@ -51,11 +51,11 @@ koaServer.use(async (ctx, next) => {
 	await next();
 })
 
-io.on('connection', (socket) => {
-	DefaultEvents(socket)
-})
+// io.on('connection', (socket) => {
+// 	DefaultEvents(socket)
+// })
 
-DefaultJobs({io})
+// DefaultJobs({io})
 
 koaServer.use(ActionLogMiddleware)
 
